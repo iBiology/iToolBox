@@ -7,7 +7,7 @@ on:
 jobs:
   deploy:
     runs-on: ubuntu-latest
-    if: github.repository == 'iBiology/iToolBox' && github.event_name == 'push' && startsWith(github.ref, 'refs/tags')
+    if: github.repository == 'iBiology/iToolBox' && github.event_name == 'push'
 
     steps:
       - run: echo "🎉 Publish Python Package was automatically triggered by a ${{ github.event_name }} event."
