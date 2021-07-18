@@ -27,11 +27,25 @@ def critical(s): logger.critical(s) if s else ''
 
 
 def error_and_exit(msg, code=1):
+    """
+    Logging an error message and exit with an exit code.
+    
+    :param msg: str, an error message.
+    :param code: int, an exit code.
+    """
+    
     error(msg)
     sys.exit(code)
     
     
 def mkdir(path):
+    """
+    Make a directory or exit on error.
+    
+    :param path: str, path to directory needs to be created.
+    :return: str, path to a directory.
+    """
+    
     if not path:
         error_and_exit('Path for mkdir must be a non-empty string.')
     if not isinstance(path, str):
@@ -46,6 +60,14 @@ def mkdir(path):
     
     
 def touch(path, overwrite=False):
+    """
+    Touch a empty file or exit on error.
+    
+    :param path: str, path to a file needs to be created.
+    :param overwrite: bool, whether to overwrite an existing file.
+    :return: str, path to a file.
+    """
+    
     if not path:
         error_and_exit('Path for touch must a be non-empty string.')
     if not isinstance(path, str):
@@ -69,6 +91,14 @@ def touch(path, overwrite=False):
 
 
 def rm(path, exit_on_error=True):
+    """
+    Delete a path (to a file or directory).
+    
+    :param path: str, path to a file or directory needs to be deleted.
+    :param exit_on_error: bool, whether to exit on error of deleting.
+    :return: None
+    """
+    
     if not path:
         error_and_exit('Path for rm must be a non-empty string.')
     if not isinstance(path, str):
@@ -92,10 +122,21 @@ def rm(path, exit_on_error=True):
         
         
 def equal_len_lists(l1, l2, msg='', exit_if_unequal=True):
+    """
+    Check if two lists consist of same number of elements.
+    
+    :param l1: list, the first list.
+    :param l2: list, the second list.
+    :param msg: str, error message if two list consists of unequal number of elements.
+    :param exit_if_unequal: bool, whether to exit on two list consists of unequal number of elements.
+    :return: boo, True or False for equal or unequal number of elements, respectively.
+    """
+    
     equal = len(l1) == len(l2)
-    error(msg)
-    if not equal and exit_if_unequal:
-        sys.exit(1)
+    if not equal:
+        error(msg)
+        if not exit_if_unequal:
+            sys.exit(1)
     return equal
             
 
