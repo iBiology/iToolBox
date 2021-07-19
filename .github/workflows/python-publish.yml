@@ -1,7 +1,6 @@
 name: Publish Python Package
 
-on: 
-  push
+on: [push]
 
 jobs:
   deploy:
